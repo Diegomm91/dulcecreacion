@@ -292,6 +292,98 @@ footer {
         gap: 25px;
     }
 
+    /* --- Estilos para el Modal de Imagen --- */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Se mantiene en su lugar al hacer scroll */
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%; /* Cubre toda la pantalla */
+    height: 100%; /* Cubre toda la pantalla */
+    overflow: auto; /* Habilita el scroll si la imagen es muy grande */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente oscuro */
+    display: flex; /* Usamos flexbox para centrar contenido */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    flex-direction: column; /* Permite que el caption esté debajo de la imagen */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%; /* Máximo 90% del ancho de la pantalla */
+    max-height: 85%; /* Máximo 85% del alto de la pantalla */
+    object-fit: contain; /* Asegura que la imagen se ajuste sin recortarse */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Sombra para la imagen ampliada */
+}
+
+/* Botón de cerrar (la 'x') */
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 1001; /* Asegura que esté por encima de la imagen */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Título/descripción de la imagen (caption) */
+#caption {
+    margin-top: 10px;
+    display: block;
+    width: 80%;
+    text-align: center;
+    color: #ccc;
+    font-size: 17px;
+    padding: 10px 0;
+}
+
+/* Animación de entrada para el modal (opcional) */
+.modal-content {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)}
+    to {transform: scale(1)}
+}
+
+/* Media Queries para el modal, ajustando el tamaño del botón y texto en móviles */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        max-width: 95%;
+        max-height: 80%;
+    }
+    .close-button {
+        top: 15px;
+        right: 25px;
+        font-size: 30px;
+    }
+    #caption {
+        font-size: 14px;
+        width: 90%;
+    }
+}
     .gallery img {
         height: 250px;
     }
