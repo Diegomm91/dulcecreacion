@@ -1,33 +1,53 @@
+/* --- Estilos Generales y Reset Básico (Aplicados a todas las pantallas) --- */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #ff66b2;
+    /* Importante para que padding y border no aumenten el ancho total */
+    box-sizing: border-box;
+    background-color: #f8f8f8; /* Un fondo gris muy claro */
+    color: #333; /* Color de texto general más oscuro para mejor legibilidad */
+    line-height: 1.6; /* Mejora la legibilidad del texto */
 }
 
+/* Para asegurar que el box-sizing se aplique a todos los elementos */
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* --- Encabezado (Header) --- */
 header {
-    background-color: #ffccff; /* Un rosa pastel, puedes cambiarlo */
-    color: rgb(161, 72, 134);
-    padding: 1em 0;
+    background-color: #ffccff; /* Rosa pastel */
+    color: #a14886; /* Un tono más oscuro de rosa/morado para el texto */
+    padding: 1.5em 0; /* Aumenta el padding vertical */
     text-align: center;
 }
 
 header img {
-    max-width: 150px;
+    max-width: 120px; /* Tamaño un poco más controlado para el logo en móviles */
     height: auto;
     display: block;
-    margin: 0 auto 10px;
+    margin: 0 auto 10px; /* Centra la imagen y agrega margen abajo */
+    border-radius: 50%; /* Si quieres el logo circular */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sutil sombra para el logo */
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 2.2em; /* Tamaño de fuente relativo para adaptarse */
+    color: #a14886; /* Color consistente con el texto del header */
 }
 
+header p {
+    margin: 5px 0 0;
+    font-size: 1.1em;
+    color: #c979a8; /* Un tono intermedio de rosa para el subtítulo */
+}
+
+/* --- Navegación (Nav) --- */
 nav {
-    background-color: #ff99cc; /* Un rosa un poco más oscuro */
-    padding: 0.5em 0;
+    background-color: #ff99cc; /* Rosa más oscuro */
+    padding: 0.8em 0; /* Un poco más de padding */
     text-align: center;
 }
 
@@ -36,92 +56,243 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column; /* Por defecto, los enlaces se apilan en móviles */
+    align-items: center; /* Centra los elementos apilados */
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 5px 0; /* Espacio vertical entre ítems en móvil */
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease;
+    padding: 8px 15px; /* Más padding para hacerlos más fáciles de tocar */
+    display: block; /* Para que todo el padding sea clickeable */
+    transition: background-color 0.3s ease, border-radius 0.3s ease;
 }
 
 nav ul li a:hover {
-    background-color: #e667af; /* Un rosa más intenso al pasar el mouse */
+    background-color: #e667af; /* Rosa más intenso al pasar el mouse */
     border-radius: 5px;
 }
 
+/* --- Contenedor Principal --- */
 .container {
-    width: 90%; /* Un poco más ancho en general */
-    max-width: 1200px; /* Ancho máximo para pantallas grandes */
-    margin: 20px auto;
-    padding: 20px;
+    width: 90%; /* Ancho principal, deja un margen en los lados */
+    max-width: 1200px; /* Límite para pantallas muy grandes */
+    margin: 25px auto; /* Centra y agrega más margen vertical */
+    padding: 25px; /* Más padding interno */
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+    border-radius: 10px; /* Bordes más redondeados */
 }
 
+/* --- Secciones Generales --- */
 .section {
     margin-bottom: 40px;
+    padding: 15px 0; /* Pequeño padding interno para las secciones */
 }
 
 .section h2 {
     color: #ff66b2; /* Rosa vibrante para los títulos de sección */
-    border-bottom: 2px solid #ff66b2;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    border-bottom: 3px solid #ff66b2; /* Línea más gruesa */
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    text-align: center; /* Centra los títulos de sección */
+    font-size: 2em; /* Tamaño de fuente relativo */
 }
 
+/* --- Galería de Imágenes --- */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajuste del tamaño mínimo de las columnas */
-    gap: 10px; /* Reducción del espacio entre imágenes */
+    /* Se ajusta automáticamente con columnas que miden al menos 150px y se expanden */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px; /* Espacio entre las imágenes */
 }
 
 .gallery img {
     width: 100%;
-    height: auto; /* La altura se ajusta proporcionalmente al ancho */
-    object-fit: cover; /* Sigue recortando para llenar el espacio */
+    height: 180px; /* Altura fija para las imágenes de la galería */
+    object-fit: cover; /* Recorta la imagen para que llene el espacio sin distorsionarse */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra para las imágenes */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.03); /* Ligeramente más grande al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Información de Contacto --- */
+.contact-info {
+    text-align: center; /* Centra todo el contenido de contacto */
 }
 
 .contact-info p {
-    margin: 5px 0;
+    margin: 10px 0; /* Más espacio entre párrafos */
+    font-size: 1.1em;
 }
 
 .contact-info a {
-    color: #ff66b2;
+    color: #ff66b2; /* Color de enlace consistente */
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .contact-info a:hover {
     text-decoration: underline;
+    color: #e667af; /* Color de hover para enlaces */
 }
 
+/* --- Pie de Página (Footer) --- */
 footer {
     text-align: center;
-    padding: 20px;
-    margin-top: 30px;
-    background-color: #ffccff;
-    color: rgb(0, 0, 0); /* <-- Color del texto del footer en negro */
-    font-size: 0.9em;
+    padding: 25px; /* Más padding */
+    margin-top: 40px; /* Más margen superior */
+    background-color: #ffccff; /* Color de fondo consistente con el header */
+    color: #a14886; /* Color de texto del footer */
+    font-size: 0.95em;
+    border-top: 1px solid #f0f0f0; /* Pequeña línea divisoria */
 }
 
-/* Media query para pantallas más pequeñas */
-@media (max-width: 600px) {
-    .container {
-        width: 95%;
-        padding: 15px;
+/* --- MEDIA QUERIES para Responsividad --- */
+
+/* Teléfonos pequeños (menos de 480px, ej. iPhone SE) */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2em;
     }
+
+    header p {
+        font-size: 1em;
+    }
+
+    .container {
+        width: 98%; /* Más ancho para aprovechar el espacio en pantallas muy pequeñas */
+        padding: 10px;
+        margin: 15px auto;
+    }
+
+    .section h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
     .gallery {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Columnas más pequeñas en móviles */
-        gap: 5px;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Imágenes un poco más pequeñas */
+        gap: 10px;
+    }
+
+    .gallery img {
+        height: 150px; /* Altura de imagen más pequeña */
+    }
+
+    nav ul li {
+        margin: 3px 0; /* Menos margen entre ítems en móviles muy pequeños */
+    }
+}
+
+/* Teléfonos grandes y tabletas en modo retrato (hasta 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    nav ul {
+        flex-direction: row; /* La navegación empieza a ir en fila */
+        flex-wrap: wrap; /* Permitir que los ítems se envuelvan si no caben */
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 10px; /* Margen horizontal entre ítems */
+    }
+
+    .container {
+        width: 92%;
+        padding: 20px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Las imágenes se expanden un poco más */
+        gap: 20px;
+    }
+
+    .gallery img {
+        height: 200px; /* Altura adecuada para tabletas */
+    }
+}
+
+/* Tabletas en modo horizontal y laptops pequeñas (desde 769px hasta 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    header img {
+        max-width: 150px;
+    }
+
+    header h1 {
+        font-size: 2.8em;
+    }
+
+    nav ul {
+        flex-direction: row; /* Asegura que la navegación esté en fila */
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 20px;
+    }
+
+    .container {
+        width: 85%;
+        padding: 30px;
+    }
+
+    .section h2 {
+        font-size: 2.2em;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Más columnas o más grandes */
+    }
+
+    .gallery img {
+        height: 220px;
+    }
+}
+
+/* Pantallas grandes (escritorio y más) (desde 1025px) */
+@media (min-width: 1025px) {
+    header img {
+        max-width: 180px;
+    }
+
+    header h1 {
+        font-size: 3.2em;
+    }
+
+    header p {
+        font-size: 1.2em;
+    }
+
+    nav ul li a {
+        padding: 10px 25px;
+    }
+
+    .container {
+        width: 80%; /* Ancho más contenido para pantallas muy grandes */
+        padding: 40px;
+    }
+
+    .section h2 {
+        font-size: 2.5em;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Imágenes más grandes en escritorio */
+        gap: 25px;
+    }
+
+    .gallery img {
+        height: 250px;
     }
 }
