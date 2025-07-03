@@ -161,26 +161,28 @@ footer {
 
 /* --- Estilos para el Modal de Imagen --- */
 .modal {
-    display: none; /* Oculto por defecto, JS lo cambia a 'flex' */
-    position: fixed; /* ¡Crucial! Permanece fijo en la ventana del navegador */
-    z-index: 9999; /* ¡Aumentado! Asegura que esté por encima de casi todo */
+    /* ¡CORRECCIÓN CLAVE AQUÍ! Aseguramos que 'display: none;' siempre sea la primera regla */
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Crucial: Permanece fijo en la ventana del navegador */
+    z-index: 9999; /* Asegura que esté por encima de casi todo */
     left: 0;
     top: 0;
     width: 100%; /* Ocupa todo el ancho */
     height: 100%; /* Ocupa todo el alto */
-    overflow: auto; /* Permite scroll si la imagen es más grande que la pantalla */
+    overflow: auto; /* Permite scroll si la imagen es muy grande */
     background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro con más opacidad para contrastar */
-    display: flex; /* Se habilita con JS para centrar contenido */
-    align-items: center; /* Centra verticalmente */
-    justify-content: center; /* Centra horizontalmente */
-    flex-direction: column; /* Para que el caption esté debajo de la imagen */
+
+    /* Estas propiedades son para centrar el contenido, pero solo aplican cuando JS lo muestra como 'flex' */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .modal-content {
     margin: auto; /* Centra la imagen dentro del flexbox */
     display: block;
     max-width: 90%; /* Máximo 90% del ancho del modal */
-    max-height: 90vh; /* ¡Importante! Máximo 90% del alto de la ventana (viewport height) */
+    max-height: 90vh; /* Importante: Máximo 90% del alto de la ventana (viewport height) */
     object-fit: contain; /* Ajusta la imagen sin recortarla dentro del contenedor */
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -200,7 +202,7 @@ footer {
     font-weight: bold;
     transition: 0.3s;
     cursor: pointer;
-    z-index: 10000; /* ¡Aún más alto que el modal para que siempre sea clickeable! */
+    z-index: 10000; /* Aún más alto que el modal para que siempre sea clickeable */
 }
 
 .close-button:hover,
